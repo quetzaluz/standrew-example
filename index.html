@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>53rd Annual Neil Kelly Memorial Auction | St. Andrew Catholic Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-cream: #f8f5f0;
+      --color-gold: #b8860b;
+      --color-burgundy: #6b2d3c;
+      --color-charcoal: #2c2c2c;
+      --color-overlay: rgba(44, 44, 44, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: var(--color-charcoal);
+      background: var(--color-cream);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hero with dynamic background images */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero__slides {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero__slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .hero__slide:nth-child(1) {
+      background-image: url('images/St-Andrew-Catholic-Church_62f543ebd66dd9e4acdcb8dbcae6dcc0.jpg');
+    }
+
+    .hero__slide:nth-child(2) {
+      background-image: url("images/Northeast_Portland,_Oregon_(2019)_-_127.jpg");
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--color-overlay);
+      z-index: 2;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 2rem;
+      max-width: 42rem;
+    }
+
+    .hero__badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+    }
+
+    .hero__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.25rem, 6vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero__title .accent {
+      color: var(--color-gold);
+      font-style: italic;
+    }
+
+    .hero__subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.75rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn--primary {
+      background: var(--color-gold);
+      color: var(--color-charcoal);
+      border: none;
+    }
+
+    .btn--primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .btn--secondary:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+      transform: translateY(-2px);
+    }
+
+    /* Impact section */
+    .impact {
+      padding: 4rem 2rem;
+      background: var(--color-cream);
+      text-align: center;
+    }
+
+    .impact__inner {
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+
+    .impact__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--color-burgundy);
+      margin-bottom: 1rem;
+    }
+
+    .impact__text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--color-charcoal);
+    }
+
+    .impact__text a {
+      color: var(--color-burgundy);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .impact__text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      background: var(--color-charcoal);
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+    }
+
+    .footer__church {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer__contact {
+      margin-top: 0.5rem;
+    }
+
+    .footer__contact a {
+      color: var(--color-gold);
+      text-decoration: none;
+    }
+
+    .footer__contact a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-label="Hero">
+      <div class="hero__slides" role="presentation">
+        <div class="hero__slide active" data-slide="0"></div>
+        <div class="hero__slide" data-slide="1"></div>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__badge">Save the date</p>
+        <h1 class="hero__title">53rd Annual <span class="accent">Neil Kelly</span> Memorial Auction</h1>
+        <p class="hero__subtitle">Support the St. Andrew Community Center and Emergency Services. Together we strengthen our neighborhood.</p>
+        <div class="hero__ctas">
+          <a href="https://standrewchurch.com/giving-instructions/" class="btn btn--primary">Donate to the Community Center</a>
+          <a href="tel:+15032814429" class="btn btn--secondary">Call (503) 281-4429 ext. 6</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact">
+      <div class="impact__inner">
+        <h2 class="impact__heading">Your support makes a difference</h2>
+        <p class="impact__text">
+          Last year, the 52nd Annual Neil Kelly Memorial Auction raised <strong>$265,000</strong> for our Community Center and Emergency Services—including our food pantry and rent or utility assistance for neighbors in need. Questions? Contact the Community Center Director, <a href="tel:+15032814429">Lisa Hatten at (503) 281-4429 ext. 6</a>. We appreciate our business sponsors and encourage you to support them.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer__church">St. Andrew Catholic Church</p>
+      <p>806 NE Alberta St. Portland, OR 97211</p>
+      <p class="footer__contact">
+        <a href="tel:+15032814429">(503) 281-4429</a> · <a href="mailto:OurOffice@standrewchurch.com">OurOffice@standrewchurch.com</a>
+      </p>
+      <p><a href="https://standrewchurch.com/">standrewchurch.com</a></p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var slides = document.querySelectorAll('.hero__slide');
+      if (slides.length < 2) return;
+      var index = 0;
+      setInterval(function () {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+      }, 5000);
+    })();
+  </script>
+</body>
+</html>
